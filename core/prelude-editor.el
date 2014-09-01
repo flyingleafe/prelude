@@ -142,8 +142,14 @@
 (recentf-mode +1)
 
 ;; use shift + arrow keys to switch between visible buffers
-(require 'windmove)
-(windmove-default-keybindings)
+(defvar prelude-windmove t
+  "Is windmove enabled by default.")
+(defvar prelude-windmove-modifier 'shift
+  "Windmove modifier key.")
+
+(when prelude-windmove
+  (require 'windmove)
+  (windmove-default-keybindings prelude-windmove-modifier))
 
 ;; automatically save buffers associated with files on buffer switch
 ;; and on windows switch

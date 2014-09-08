@@ -7,14 +7,20 @@
         emmet-expand-line
         emmet-next-edit-point
         emmet-prev-edit-point
+        end-of-visual-line
+        forward-sexp
         haml-electric-backspace
         haskell-indentation-delete-backward-char
         indent-for-tab-command
         kill-region
+        markdown-cycle
+        markdown-demote
+        markdown-exdent-or-delete
         ns-copy-including-secondary
         org-agenda-next-line
         org-agenda-previous-line
         org-agenda-todo
+        org-self-insert-command
         prelude-kill-whole-line
         prelude-move-beginning-of-line
         prelude-smart-open-line

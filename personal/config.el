@@ -77,8 +77,8 @@
 
 ;; ============= Javascript mode =============== ;;
 
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (js2r-add-keybindings-with-prefix "C-c C-r")
-
 
 ;; ============= Org mode customs ============== ;;
 

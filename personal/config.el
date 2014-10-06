@@ -13,8 +13,15 @@
   (exec-path-from-shell-initialize)
   (setenv "EDITOR" "/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10.9/emacsclient"))
 
+(push "~/.virtualenvs/press_env/bin" exec-path)
+(setenv "PATH" (concat
+                "~/.virtualenvs/press_env/bin" ":"
+                (getenv "PATH")))
 
 ;; ============= Things to survive ============= ;;
+
+;; Line numbers
+(global-nlinum-mode 1)
 
 ;; Super-useful Hyper key
 (defvar ns-function-modifier 'hyper)
@@ -28,11 +35,27 @@
 ;; Helm is the thing I wanna have everywhere
 (helm-mode 1)
 
+;; Yasnippets are awesome
+(yas-global-mode 1)
+
 ;; And I don't want the Projectile buffer to
 ;; fire automatically
 (global-set-key (kbd "H-p") 'helm-projectile)
 (define-key prelude-mode-map (kbd "C-c h") 'helm-mini)
 
+(defun comment-or-uncomment-region-or-line ()
+  "Comments or uncomments the region or the current line if there's no active region."
+  (interactive)
+  (let (beg end)
+    (if (region-active-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position)))
+    (comment-or-uncomment-region beg end)))
+
+(global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region-or-line)
+
+;; ===================== Tramp ====================== ;;
+(setq tramp-default-method "ssh")
 
 ;; ============ Configuration editing =============== ;;
 
@@ -82,6 +105,8 @@
 
 ;; ============= Org mode customs ============== ;;
 
+(require 'org-habit)
+
 ;; Habits tracking
 (add-to-list 'org-modules "org-habits")
 
@@ -90,6 +115,8 @@
 (defvar flf-todo-folder (format "%s/%s" org-directory "Todo"))
 (defvar flf-main-todo   (format "%s/%s" flf-todo-folder "HotTodo.org"))
 (defvar flf-habits      (format "%s/%s" flf-todo-folder "Habits.org"))
+(defvar flf-schedule    (format "%s/%s" org-directory "Schedule.org"))
+(defvar flf-times       (format "%s/%s" org-directory "Times.org"))
 
 ;; MobileOrg setup
 (setq org-mobile-directory "~/Dropbox/Приложения/MobileOrg")
@@ -97,6 +124,8 @@
 
 ;; Agenda setup
 (add-to-list 'org-agenda-files flf-todo-folder)
+(add-to-list 'org-agenda-files flf-schedule)
+(add-to-list 'org-agenda-files flf-times)
 
 ;; File opening
 (defun flf-open-hot-todo ()
@@ -107,6 +136,10 @@
   (interactive)
   (find-file flf-habits))
 
+(defun flf-open-schedule ()
+  (interactive)
+  (find-file flf-schedule))
+
 ;; Keybindings
 (global-set-key (kbd "H-l") 'org-store-link)
 (global-set-key (kbd "H-c") 'org-capture)
@@ -114,6 +147,7 @@
 (global-set-key (kbd "H-b") 'org-iswitchb)
 (global-set-key (kbd "H-t") 'flf-open-hot-todo)
 (global-set-key (kbd "H-h") 'flf-open-habits)
+(global-set-key (kbd "H-s") 'flf-open-schedule)
 
 ;; Sub-todos proper handling
 (setq org-hierarchical-todo-statistics 'nil)
@@ -128,13 +162,6 @@
 ;; Logging
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-
-
-;; =============== Look and feel =============== ;;
-
-;; Color theme
-(load-theme 'brin t)
-
 
 ;; =========== End of configuration ============ ;;
 (provide 'config)

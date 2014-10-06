@@ -70,10 +70,23 @@
 (setq frame-title-format
       '("" invocation-name " Prelude - " (:eval (if (buffer-file-name)
                                             (abbreviate-file-name (buffer-file-name))
-                                          "%b"))))
+                                            "%b"))))
 
-;; use zenburn as the default theme
-(load-theme 'zenburn t)
+;; Color theme
+(load-theme 'odersky t)
+
+;; Cool mode line
+(sml/setup)
+(set-face-attribute 'mode-line nil
+                    :inverse-video nil
+                    :box nil
+                    :overline nil
+                    :underline nil)
+
+(make-face 'mode-line-position-face)
+(set-face-attribute 'mode-line-position-face nil
+                    :inherit 'mode-line-face
+                    :height 130)
 
 (provide 'prelude-ui)
 ;;; prelude-ui.el ends here

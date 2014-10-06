@@ -8,10 +8,12 @@
         emmet-next-edit-point
         emmet-prev-edit-point
         end-of-visual-line
+        forward-sentence
         forward-sexp
         haml-electric-backspace
         haskell-indentation-delete-backward-char
         indent-for-tab-command
+        isearch-repeat-backward
         kill-region
         markdown-cycle
         markdown-demote
@@ -20,6 +22,8 @@
         org-agenda-next-line
         org-agenda-previous-line
         org-agenda-todo
+        org-deadline
+        org-schedule
         org-self-insert-command
         prelude-kill-whole-line
         prelude-move-beginning-of-line
@@ -35,18 +39,22 @@
         sp-wrap-tag-end
         subword-left
         subword-right
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once
       '(
         2C-two-columns
+        ace-jump-mode
         balance-windows
         delete-window
         describe-key
         flf-reload-config
         helm-mini
         ido-switch-buffer
+        js2-mode-show-node
         keyboard-escape-quit
+        kmacro-end-macro
         magit-status
         prelude-recentf-ido-find-file
         set-fill-column

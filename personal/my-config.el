@@ -26,6 +26,12 @@
 ;; Super-useful Hyper key
 (defvar ns-function-modifier 'hyper)
 
+;; and the foo to replace hyper if no function key is present
+(defun flf-hyper-kbd (str)
+  (if (eq system-type 'darwin)
+      (kbd str)
+    (kbd (replace-regexp-in-string "H" "C-s" str t))))
+
 ;; Multicursors bindings
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -40,9 +46,10 @@
 
 ;; And I don't want the Projectile buffer to
 ;; fire automatically
-(global-set-key (kbd "H-p") 'helm-projectile)
+(global-set-key (flf-hyper-kbd "H-p") 'helm-projectile)
 (define-key prelude-mode-map (kbd "C-c h") 'helm-mini)
 
+;; Commenting support
 (defun comment-or-uncomment-region-or-line ()
   "Comments or uncomments the region or the current line if there's no active region."
   (interactive)
@@ -54,13 +61,16 @@
 
 (global-set-key (kbd "C-c C-/") 'comment-or-uncomment-region-or-line)
 
+;; Turn off Flyspell
+(add-hook 'prelude-prog-mode-hook 'turn-off-flyspell)
+
 ;; ===================== Tramp ====================== ;;
 (setq tramp-default-method "ssh")
 
 ;; ============ Configuration editing =============== ;;
 
 ;; Access config.Eli
-(defvar flf-config (expand-file-name "~/.emacs.d/personal/config.el"))
+(defvar flf-config (expand-file-name "~/.emacs.d/personal/my-config.el"))
 (defvar main-config (expand-file-name "~/.emacs.d/init.el"))
 
 (defun flf-open-config ()
@@ -74,8 +84,8 @@
   (interactive)
   (load-file main-config))
 
-(global-set-key (kbd "H-e") 'flf-open-config)
-(global-set-key (kbd "H-r") 'flf-reload-config)
+(global-set-key (flf-hyper-kbd "H-e") 'flf-open-config)
+(global-set-key (flf-hyper-kbd "H-r") 'flf-reload-config)
 
 
 ;; =============== Styling modes =============== ;;
@@ -141,13 +151,13 @@
   (find-file flf-schedule))
 
 ;; Keybindings
-(global-set-key (kbd "H-l") 'org-store-link)
-(global-set-key (kbd "H-c") 'org-capture)
-(global-set-key (kbd "H-a") 'org-agenda)
-(global-set-key (kbd "H-b") 'org-iswitchb)
-(global-set-key (kbd "H-t") 'flf-open-hot-todo)
-(global-set-key (kbd "H-h") 'flf-open-habits)
-(global-set-key (kbd "H-s") 'flf-open-schedule)
+(global-set-key (flf-hyper-kbd "H-l") 'org-store-link)
+(global-set-key (flf-hyper-kbd "H-c") 'org-capture)
+(global-set-key (flf-hyper-kbd "H-a") 'org-agenda)
+(global-set-key (flf-hyper-kbd "H-b") 'org-iswitchb)
+(global-set-key (flf-hyper-kbd "H-t") 'flf-open-hot-todo)
+(global-set-key (flf-hyper-kbd "H-h") 'flf-open-habits)
+(global-set-key (flf-hyper-kbd "H-s") 'flf-open-schedule)
 
 ;; Sub-todos proper handling
 (setq org-hierarchical-todo-statistics 'nil)
@@ -159,9 +169,28 @@
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
-;; Logging
+;; Loggingq
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+
+;; ============== Look and feel ================ ;;
+
+;; Color theme
+(load-theme 'odersky t)
+
+;; Cool mode line
+(sml/setup)
+(set-face-attribute 'mode-line nil
+                    :inverse-video nil
+                    :box nil
+                    :overline nil
+                    :underline nil)
+
+(make-face 'mode-line-position-face)
+(set-face-attribute 'mode-line-position-face nil
+                    :inherit 'mode-line-face
+                    :height 130)
+
 
 ;; =========== End of configuration ============ ;;
 (provide 'config)

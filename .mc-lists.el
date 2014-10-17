@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        easy-kill
         electric-newline-and-maybe-indent
         emmet-expand-line
         emmet-next-edit-point
@@ -39,6 +40,9 @@
         sp-wrap-tag-end
         subword-left
         subword-right
+        tab-to-tab-stop
+        text-scale-decrease
+        toggle-input-method
         yas-expand
         ))
 
@@ -58,4 +62,5 @@
         magit-status
         prelude-recentf-ido-find-file
         set-fill-column
+        text-scale-increase
         ))

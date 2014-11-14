@@ -10,6 +10,7 @@
     ("bf648fd77561aae6722f3d53965a9eb29b08658ed045207fe32ffed90433eb52" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(emmet-move-cursor-between-quotes t)
  '(flycheck-clang-language-standard "c++11")
+ '(flycheck-gcc-language-standard "c++11")
  '(helm-mode t)
  '(js2-indent-switch-body t)
  '(js2-mode-indent-ignore-first-tab t)

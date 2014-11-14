@@ -163,6 +163,12 @@
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
 
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+        ("WAIT" . "yellow")
+        ("LEARNING" . "yellow")
+        ("CANCELED" . (:foreground "blue" :weight bold))))
+
 ;; =========== End of configuration ============ ;;
 (provide 'config)
 ;;; config.el ends here

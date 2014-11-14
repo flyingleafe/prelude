@@ -10,6 +10,7 @@
         end-of-visual-line
         forward-sentence
         forward-sexp
+        god-mode-self-insert
         haml-electric-backspace
         haskell-indentation-delete-backward-char
         indent-for-tab-command

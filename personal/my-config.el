@@ -197,8 +197,6 @@
                     :inherit 'mode-line-face
                     :height 130)
 
->>>>>>> bd1ebb6922753c846e8a3f30e51a19d4f0390fa3:personal/my-config.el
-
 ;; =========== End of configuration ============ ;;
 (provide 'config)
 ;;; config.el ends here

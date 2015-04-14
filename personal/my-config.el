@@ -185,6 +185,26 @@
         ("PROMISED" . "yellow")
         ("CANCELED" . (:foreground "blue" :weight bold))))
 
+;; ============= Package control =============== ;;
+
+(defvar flf-pkg-list-file (concat user-emacs-directory ".pkglist.el"))
+
+(defun flf-save-pkg-list ()
+  (interactive)
+  (with-temp-buffer
+    (write-char ?' (current-buffer))
+    (prin1 package-activated-list (current-buffer))
+    (write-file flf-pkg-list-file)))
+
+(defun flf-restore-packages ()
+  (interactive)
+  (with-temp-buffer
+    (insert-file-contents flf-pkg-list-file)
+    (let ((packages-list (eval (read (current-buffer)))))
+      (dolist (pkg packages-list)
+        (unless (package-installed-p pkg)
+          (package-install pkg))))))
+
 ;; ============== Look and feel ================ ;;
 
 ;; Color theme

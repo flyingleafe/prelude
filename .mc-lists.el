@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        ace-jump-move
         easy-kill
         electric-newline-and-maybe-indent
         emmet-expand-line
@@ -52,6 +53,7 @@
         2C-two-columns
         ace-jump-mode
         balance-windows
+        c-electric-semi&comma
         delete-window
         describe-key
         flf-reload-config
@@ -61,6 +63,7 @@
         keyboard-escape-quit
         kmacro-end-macro
         magit-status
+        org-end-of-line
         prelude-recentf-ido-find-file
         set-fill-column
         text-scale-increase

@@ -33,20 +33,28 @@
 ;;; Code:
 
 (require 'prelude-programming)
+(require 'haskell-unicode-input-method)
 (prelude-require-packages '(haskell-mode))
+
+(defun turn-on-haskell-indent ()
+  "Turn on the haskell-indent minor mode."
+  (interactive)
+  (haskell-indent-mode t))
 
 (eval-after-load 'haskell-mode
   '(progn
      (defun prelude-haskell-mode-defaults ()
        (subword-mode +1)
        (turn-on-haskell-doc-mode)
-       (turn-on-haskell-indentation)
+       (turn-on-haskell-indent)
        (interactive-haskell-mode +1))
 
      (setq prelude-haskell-mode-hook 'prelude-haskell-mode-defaults)
 
      (add-hook 'haskell-mode-hook (lambda ()
-                                    (run-hooks 'prelude-haskell-mode-hook)))))
+                                    (run-hooks 'prelude-haskell-mode-hook)))
+     (add-hook 'haskell-mode-hook (lambda ()
+                                    (set-input-method "haskell-unicode")))))
 
 (provide 'prelude-haskell)
 

@@ -18,6 +18,8 @@
                 "~/.virtualenvs/press_env/bin" ":"
                 (getenv "PATH")))
 
+(server-start)
+
 ;; ============= Things to survive ============= ;;
 
 ;; Line numbers
@@ -25,7 +27,6 @@
 
 ;; Super-useful Hyper key
 (defvar ns-function-modifier 'hyper)
-
 ;; and the foo to replace hyper if no function key is present
 (defun flf-hyper-kbd (str)
   (if (eq system-type 'darwin)
@@ -110,8 +111,13 @@
 
 ;; ============= Javascript mode =============== ;;
 
+;; JS2 mode enabling
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;; JS2-refactor keybindings
 (js2r-add-keybindings-with-prefix "C-c C-r")
+;; Web-beautify
+(eval-after-load 'js2-mode
+  '(define-key js2-mode-map (kbd "M-s-¬") 'web-beautify-js))
 
 ;; ============= Org mode customs ============== ;;
 
@@ -174,9 +180,9 @@
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning)
-        ("WAIT" . "yellow")
+      '(("WAIT" . "yellow")
         ("LEARNING" . "yellow")
+        ("PROMISED" . "yellow")
         ("CANCELED" . (:foreground "blue" :weight bold))))
 
 ;; ============== Look and feel ================ ;;

@@ -4,12 +4,33 @@
 (setq mc/cmds-to-run-for-all
       '(
         ace-jump-move
+        c-electric-colon
+        c-electric-paren
+        coq-terminator-insert
+        count-words-region
         easy-kill
         electric-newline-and-maybe-indent
         emmet-expand-line
         emmet-next-edit-point
         emmet-prev-edit-point
         end-of-visual-line
+        evil-backward-char
+        evil-backward-paragraph
+        evil-change
+        evil-change-whole-line
+        evil-delete
+        evil-delete-backward-char-and-join
+        evil-end-of-line
+        evil-exit-visual-state
+        evil-force-normal-state
+        evil-forward-char
+        evil-forward-word-end
+        evil-inner-sentence
+        evil-insert
+        evil-next-line
+        evil-normal-state
+        evil-previous-line
+        evil-replace
         forward-sentence
         forward-sexp
         god-mode-self-insert
@@ -28,6 +49,7 @@
         org-deadline
         org-schedule
         org-self-insert-command
+        org-shiftright
         prelude-kill-whole-line
         prelude-move-beginning-of-line
         prelude-smart-open-line
@@ -53,9 +75,11 @@
         2C-two-columns
         ace-jump-mode
         balance-windows
+        c-electric-lt-gt
         c-electric-semi&comma
         delete-window
         describe-key
+        evil-mouse-drag-region
         flf-reload-config
         helm-mini
         ido-switch-buffer
@@ -67,4 +91,5 @@
         prelude-recentf-ido-find-file
         set-fill-column
         text-scale-increase
+        undefined
         ))

@@ -131,3 +131,6 @@ by Prelude.")
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
 ;;; init.el ends here
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
